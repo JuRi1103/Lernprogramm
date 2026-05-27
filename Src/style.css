@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: "Comic Sans MS";
+    font-family: Bahnschrift;
     padding: 1rem;
 }
 
@@ -37,7 +37,7 @@ button {
 }
 
 #progress-bar {
-    width: 0%;
+    width: 20%;
     height: 100%;
     background: green;
 }
