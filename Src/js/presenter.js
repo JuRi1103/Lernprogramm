@@ -8,28 +8,46 @@ export default class Presenter {
     }
 
     async init() {
+        await this.model.loadAllData();
 
-        await this.model.loadQuestions();
+        const categories = Object.keys(this.model.data);
 
+        this.view.showCategories(categories);
+        this.view.bindCategorySelection(cat => this.startCategory(cat));
+        this.view.bindAnswer(answer => this.handleAnswer(answer));
+    }
+
+    startCategory(category) {
+        this.model.loadCategory(category);
         this.loadNextQuestion();
     }
 
     loadNextQuestion() {
+        const question = this.model.getNextQuestion();
 
-        // Neue Frage holen
-        // In View anzeigen
+        if(!question) {
+            this.finishQuiz();
+            return;
+        }
+
+        this.view.showQuestion(question);
+        this.view.updateProgress(this.model.getProgress());
     }
 
     handleAnswer(answer) {
+        const correct = this.model.checkAnswer(answer);
 
-        // Antwort auswerten
-        // Fortschritt aktualisieren
-        // nächste Frage laden
+        this.view.showMessage(
+            correct ? "Richtig!" : "Falsch!",
+            correct
+        );
+
+        setTimeout(() => this.loadNextQuestion(), 800);
     }
 
     finishQuiz() {
-
-        // Statistik anzeigen
+        const progress = this.model.getProgress();
+        this.view.showStatistics(progress.score, progress.total);
     }
 
 }
