@@ -37,6 +37,8 @@ export default class Presenter {
     handleAnswer(answer) {
         const correct = this.model.checkAnswer(answer);
 
+        this.view.highlightAnswers(answer, this.model.currentQuestion.correct);
+
         this.view.showMessage(
             correct ? "Richtig!" : "Falsch!",
             correct
@@ -47,6 +49,9 @@ export default class Presenter {
 
     finishQuiz() {
         const progress = this.model.getProgress();
+
+        this.view.updateProgress(progress);
+        this.view.hideQuiz();
         this.view.showStatistics(progress.score, progress.total);
     }
 

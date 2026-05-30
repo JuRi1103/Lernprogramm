@@ -3,8 +3,6 @@
 export default class View {
 
     constructor() {
-        this.startBtn = document.getElementById("start-btn");
-        this.categorySection = document.getElementById("category-section");
         this.quizSection = document.getElementById("quiz-section");
         this.questionContainer = document.getElementById("question-container");
         this.answersContainer = document.getElementById("answers-container");
@@ -53,6 +51,7 @@ export default class View {
             const btn = document.createElement("button");
             btn.className = "answer-btn";
             btn.dataset.answer = a;
+            btn.id = "answer-" + a;
             btn.textContent = a;
             this.answersContainer.appendChild(btn);
         });
@@ -74,7 +73,30 @@ export default class View {
         this.statisticsSection.hidden = false;
         this.statisticsSection.innerHTML = `
             <h2>Ergebnis</h2>
-            <p>${score} von {total} richtig</p>
+            <p>${score} von ${total} richtig</p>
         `;
+    }
+
+    highlightAnswers(selected, correct) {
+        const buttons = document.querySelectorAll(".answer-btn");
+
+        buttons.forEach(btn => {
+            if (btn.dataset.answer === correct) {
+                btn.classList.add("correct");
+            }
+
+            if (btn.dataset.answer === selected && selected !== correct) {
+                btn.classList.add("wrong");
+            }
+
+            btn.disabled = true;
+        });
+    }
+
+    hideQuiz() {
+        this.quizSection.hidden = true;
+        this.answersContainer.innerHTML = "";
+        this.questionContainer.textContent = "";
+        this.messageContainer.textContent = "";
     }
 }

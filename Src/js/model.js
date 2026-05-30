@@ -69,10 +69,4 @@ export default class Model {
             score: this.score
         };
     }
-
-    resetQuiz() {
-        this.currentIndex = 0;
-        this.score = 0;
-        this.currentQuestion = null;
-    }
 }

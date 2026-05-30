@@ -11,15 +11,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     presenter.init();
 
+    setupInstallPrompt();
     registerServiceWorker();
 });
+
+function setupInstallPrompt() {
+    let deferredPrompt;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+       e.preventDefault();
+       deferredPrompt = e;
+       document.getElementById("install-btn").hidden = false;
+    });
+
+    document.getElementById("install-btn").addEventListener("click", async () => {
+        document.getElementById("install-btn").hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+    });
+}
 
 function registerServiceWorker() {
 
     if ("serviceWorker" in navigator) {
 
         navigator.serviceWorker
-            .register("../service-worker.js")
+            .register("/service-worker.js")
             .then(() => {
                 console.log("Service Worker registriert");
             })

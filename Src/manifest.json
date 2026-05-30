@@ -1,0 +1,9 @@
+{
+  "name": "Lernprogramm",
+  "short_name": "Lernen",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFF9F7",
+  "theme_color": "#FF8A65"
+}
