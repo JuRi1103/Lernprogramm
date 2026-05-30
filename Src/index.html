@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lernprogramm</title>
+    <meta name="theme-color" content="#FFB4A2">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 
@@ -13,32 +14,42 @@
         <div>
             <h1>Lernprogramm</h1>
         </div>
+        <div id="install-prompt">
+            <button id="install-btn" hidden>Installieren</button>
+        </div>
     </header>
 
     <main>
+
+        <section id="start-section">
+            <button id="start-btn">
+                Start
+            </button>
+        </section>
 
         <section  id="category-section">
             <h2>Kategorie wählen</h2>
             <div id="category-container"></div>
         </section>
 
-        <section id="quiz-section">
-            <div id="question-container">
-                Questions
-            </div>
+        <section id="quiz-section" hidden>
+            <div id="question-container" aria-live="polite"></div>
 
-            <div id="answers-container">
-                Buttons
-            </div>
+            <div id="answers-container"></div>
+
+            <div id="message-container" aria-live="assertive"></div>
+        </section>
+
+        <section id="progress-section">
+
+            <div id="progress-text"></div>
 
             <div id="progress-container">
                 <div id="progress-bar"></div>
             </div>
         </section>
 
-        <section id="statistics-section">
-            Stats
-        </section>
+        <section id="statistics-section" hidden></section>
 
     </main>
 
