@@ -30,7 +30,7 @@ export default class Presenter {
             return;
         }
 
-        this.view.showQuestion(question);
+        this.view.showQuestion(question, this.model.category);
         this.view.updateProgress(this.model.getProgress());
     }
 

@@ -41,18 +41,31 @@ export default class View {
         });
     }
 
-    showQuestion(question) {
+    showQuestion(question, category) {
         this.quizSection.hidden = false;
 
-        this.questionContainer.textContent = question.question;
+        if (category === "mathe") {
+            katex.render(question.question, this.questionContainer, {
+                throwOnError: false
+            });
+        } else {
+            this.questionContainer.textContent = question.question;
+        }
 
         this.answersContainer.innerHTML = "";
         question.answers.forEach(a => {
             const btn = document.createElement("button");
             btn.className = "answer-btn";
             btn.dataset.answer = a;
-            btn.id = "answer-" + a;
-            btn.textContent = a;
+
+            if (category === "mathe") {
+                katex.render(a, btn, {
+                    throwOnError: false
+                });
+            } else {
+                btn.textContent = a;
+            }
+
             this.answersContainer.appendChild(btn);
         });
 
