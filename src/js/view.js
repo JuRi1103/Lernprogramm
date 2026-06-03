@@ -1,7 +1,6 @@
 "use strict";
 
 export default class View {
-
     constructor() {
         this.quizSection = document.getElementById("quiz-section");
         this.questionContainer = document.getElementById("question-container");
@@ -27,9 +26,9 @@ export default class View {
 
     bindCategorySelection(handler) {
         document.getElementById("category-container").addEventListener("click", e => {
-           if (e.target.matches(".category-btn")) {
-               handler(e.target.dataset.category);
-           }
+            if (e.target.matches(".category-btn")) {
+                handler(e.target.dataset.category);
+            }
         });
     }
 

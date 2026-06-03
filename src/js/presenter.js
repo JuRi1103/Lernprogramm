@@ -10,15 +10,20 @@ export default class Presenter {
     async init() {
         await this.model.loadAllData();
 
-        const categories = Object.keys(this.model.data);
+        const categories = Object.keys(this.model.data).concat(["extern"]);
 
         this.view.showCategories(categories);
         this.view.bindCategorySelection(cat => this.startCategory(cat));
         this.view.bindAnswer(answer => this.handleAnswer(answer));
     }
 
-    startCategory(category) {
-        this.model.loadCategory(category);
+    async startCategory(category) {
+        if (category === "extern") {
+            await this.model.loadExternalData();
+        } else {
+            await this.model.loadCategory(category);
+        }
+
         this.loadNextQuestion();
     }
 
@@ -34,8 +39,8 @@ export default class Presenter {
         this.view.updateProgress(this.model.getProgress());
     }
 
-    handleAnswer(answer) {
-        const correct = this.model.checkAnswer(answer);
+    async handleAnswer(answer) {
+        const correct = await this.model.checkAnswer(answer);
 
         this.view.highlightAnswers(answer, this.model.currentQuestion.correct);
 
@@ -54,5 +59,4 @@ export default class Presenter {
         this.view.hideQuiz();
         this.view.showStatistics(progress.score, progress.total);
     }
-
 }
