@@ -10,7 +10,7 @@ export default class Presenter {
     async init() {
         await this.model.loadAllData();
 
-        const categories = Object.keys(this.model.data).concat(["extern"]);
+        const categories = Object.keys(this.model.data).concat(["Extern"]);
 
         this.view.showCategories(categories);
         this.view.bindCategorySelection(cat => this.startCategory(cat));
@@ -18,7 +18,7 @@ export default class Presenter {
     }
 
     async startCategory(category) {
-        if (category === "extern") {
+        if (category === "Extern") {
             await this.model.loadExternalData();
         } else {
             await this.model.loadCategory(category);

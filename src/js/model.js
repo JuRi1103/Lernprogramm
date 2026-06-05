@@ -67,7 +67,7 @@ export default class Model {
 
             this.currentIndex = 0;
             this.score = 0;
-            this.category = "extern";
+            this.category = "Extern";
         }
 
         async loadAllData() {

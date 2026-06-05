@@ -31,6 +31,7 @@ Getestet in Firefox und Chrome
 - bei dieser README.md
 - icon-192 und icon-512
 - als Hilfe bei der Erstellung der style.css
+- Erstellung von Fragen für die questions.json
 
 # Projektstruktur
 ├── index.html  

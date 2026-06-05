@@ -43,7 +43,7 @@ export default class View {
     showQuestion(question, category) {
         this.quizSection.hidden = false;
 
-        if (category === "mathe") {
+        if (category === "Mathe") {
             katex.render(question.question, this.questionContainer, {
                 throwOnError: false
             });
@@ -57,7 +57,7 @@ export default class View {
             btn.className = "answer-btn";
             btn.dataset.answer = a;
 
-            if (category === "mathe") {
+            if (category === "Mathe") {
                 katex.render(a, btn, {
                     throwOnError: false
                 });
