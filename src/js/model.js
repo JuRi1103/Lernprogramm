@@ -9,7 +9,7 @@ export default class Model {
         this.score = 0;
         this.currentIndex = 0;
         this.category = null;
-        this.auth = "Basic " + btoa("test2@gmail.com:secret");
+        this.auth = "Basic " + btoa("test2@gmail.com:secret");//random Login
     }
 
         async fetchRandomQuiz() {
@@ -51,7 +51,6 @@ export default class Model {
         }
 
         async loadExternalData() {
-            console.log("EXTERNAL DATA LOADING...");
             this.questions = [];
 
             const usedIds = new Set();
@@ -65,8 +64,6 @@ export default class Model {
                     console.log("API Quiz: ", quiz);
                 }
             }
-
-            console.log("FINAL QUESTIONS:", this.questions);
 
             this.currentIndex = 0;
             this.score = 0;
@@ -98,6 +95,7 @@ export default class Model {
             const raw = this.questions[this.currentIndex];
             console.log("RAW QUIZ:", raw);
 
+            //EXTERN
             if (raw.id !== undefined) {
                 const shuffled = raw.options
                     .map((text, index) => ({text, index}))
@@ -114,6 +112,7 @@ export default class Model {
                 return this.currentQuestion;
             }
 
+            //INTERN
             const correct = raw.l[0];
             const answers = [...raw.l].sort(() => Math.random() - 0.5);
 
