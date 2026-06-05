@@ -72,7 +72,7 @@ export default class Model {
 
         async loadAllData() {
             try {
-                const response = await fetch("./data/questions.json");
+                const response = await fetch("./data/questions.json?v=" + Date.now());
                 this.data = await response.json();
             } catch (err) {
                 console.error("Fehler beim laden der Fragen: ", err);
